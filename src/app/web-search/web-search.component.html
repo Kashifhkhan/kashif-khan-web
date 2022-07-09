@@ -1,0 +1,29 @@
+<!--Search Form Start-->
+<div class="form-wrapper">
+  <form action="">
+    <div class="fields-wrapper">
+      <div class="form-field">
+        <input
+          class="search-input"
+          type="text"
+          name="search"
+          id="search"
+          #input
+        />
+      </div>
+      <div class="form-field">
+        <button
+          type="button"
+          class="search-btn"
+          (click)="searchQuery(input.value)"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+<!--End Here-->
+
+<!--Search Result Component-->
+<app-web-search-result></app-web-search-result>

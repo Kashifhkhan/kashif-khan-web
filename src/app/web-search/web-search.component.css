@@ -1,0 +1,11 @@
+.form-wrapper {
+  background-color: #e7e7e7;
+  padding: 30px 10px;
+  margin-bottom: 50px;
+}
+.form-wrapper .fields-wrapper {
+  display: flex;
+}
+.form-wrapper .form-field {
+  padding: 0 10px;
+}
