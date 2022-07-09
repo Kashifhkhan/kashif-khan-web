@@ -1,11 +1,36 @@
 .form-wrapper {
   background-color: #e7e7e7;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3em;
   padding: 30px 10px;
-  margin-bottom: 50px;
 }
 .form-wrapper .fields-wrapper {
+  background-color: #fff;
+  border: 1px solid #ccc;
   display: flex;
+  padding: 5px;
 }
 .form-wrapper .form-field {
-  padding: 0 10px;
+  display: flex;
+}
+.form-wrapper .form-field input,
+.form-wrapper .form-field button {
+  border: none;
+  height: 26px;
+  outline: none;
+  padding: 0;
+}
+
+.form-wrapper .form-field input {
+  width: 300px;
+  padding: 0 5px;
+}
+
+.form-wrapper .form-field button {
+  background: none;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 26px;
 }

@@ -2,9 +2,9 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'hello',
-  template: `<h1>Hello {{name}}!</h1>`,
-  styles: [`h1 { font-family: Lato; }`]
+  template: `<h1>{{name}}</h1>`,
+  styles: [`h1 { font-size: 3em; text-align:center }`],
 })
-export class HelloComponent  {
+export class HelloComponent {
   @Input() name: string;
 }

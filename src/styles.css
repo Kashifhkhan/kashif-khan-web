@@ -1,6 +1,8 @@
 /* Add application styles & imports to this file! */
-table {
+* {
   font-family: 'Arial', 'Helvetica', sans-serif;
+}
+table {
   caption-side: bottom;
   border-collapse: collapse;
 }
@@ -19,6 +21,7 @@ th {
   border-color: inherit;
   border-style: solid;
   border-width: 0;
+  border-collapse: collapse;
 }
 
 label {
@@ -31,9 +34,12 @@ label {
   vertical-align: top;
   color: #000;
 }
+.table tr:nth-child(even) {
+  background-color: #e7e7e7;
+}
 .table td {
   border: 1px solid #adb5bd;
-  padding: 0.5rem 0.5rem;
+  padding: 0.2rem 0.5rem;
 }
 .table-responsive {
   overflow-x: auto;

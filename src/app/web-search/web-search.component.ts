@@ -9,9 +9,7 @@ import { AppServicesService } from '../app-services.service';
 export class WebSearchComponent implements OnInit {
   constructor(private service: AppServicesService) {}
 
-  ngOnInit() {}
+  searchQuery: string = '';
 
-  searchQuery(query: string) {
-    this.service.searchQuery = query;
-  }
+  ngOnInit() {}
 }

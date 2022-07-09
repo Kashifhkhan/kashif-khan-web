@@ -13,17 +13,14 @@ export class AppServicesService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  searchQuery: string = '';
-
   getResults(
     query: string,
     itemsPerPage?: number,
     pageNo?: number
   ): Observable<SearchInterface> {
-    this.searchQuery = query;
-    let url = `https://api.github.com/search/users?q=${this.searchQuery} in:login`;
+    let url = `https://api.github.com/search/users?q=${query} in:login&per_page=${itemsPerPage}`;
     if (pageNo) {
-      url += `&per_page=${itemsPerPage}&page=${pageNo}`;
+      url = url + `&page=${pageNo}`;
     }
     return this.http.get<SearchInterface>(url, this.httpOptions);
   }
