@@ -35,6 +35,7 @@ export class WebSearchResultComponent implements OnInit {
         .subscribe(
           (result: SearchInterface) => {
             this.searchResultItems = result.items;
+            this.dataFetched = true;
           },
           (err: any) => {
             this.errorMessage = err;
@@ -45,12 +46,12 @@ export class WebSearchResultComponent implements OnInit {
         (result: SearchInterface) => {
           this.searchResultItems = result.items;
           this.totalItems = result.total_count;
+          this.dataFetched = true;
         },
         (err: any) => {
           this.errorMessage = err;
         }
       );
     }
-    this.dataFetched = true;
   }
 }

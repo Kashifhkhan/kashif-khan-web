@@ -1,5 +1,6 @@
+<!--Results table-->
 <ng-container
-  *ngIf="searchResultItems && searchResultItems.length; else dataNotFound"
+  *ngIf="searchResultItems && searchResultItems.length; else notFoundMessage"
 >
   <table class="table table-responsive">
     <tr
@@ -27,13 +28,17 @@
   </table>
   <pagination-controls
     (pageChange)="showResults((pageNumber = $event))"
-  ></pagination-controls>
-</ng-container>
-<ng-template #dataNotFound>
+  ></pagination-controls> </ng-container
+><!--end here-->
+
+<!--Not found message-->
+<ng-template #notFoundMessage>
   <div class="text-center" *ngIf="dataFetched && !errorMessage">
-    <h3>Data not found for searched text</h3>
+    <h3>Data not found for searched text "{{ searchQuery }}"</h3>
   </div>
 </ng-template>
-<div class="text-center">
-  <pre class="error" *ngIf="errorMessage"><code>{{ errorMessage }}</code></pre>
-</div>
+
+<!--Error message-->
+<pre class="error" *ngIf="errorMessage">
+  <code>{{ errorMessage }}</code>
+</pre>
