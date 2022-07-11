@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppServicesService } from '../app-services.service';
 import { SearchInterface } from '../search-interface';
 
