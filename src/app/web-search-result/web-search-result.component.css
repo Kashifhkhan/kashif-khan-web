@@ -5,3 +5,9 @@
 ::ng-deep pagination-controls nav {
   text-align: center;
 }
+.text-center {
+  text-align: center;
+}
+.error {
+  color: red;
+}

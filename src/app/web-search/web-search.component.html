@@ -1,6 +1,6 @@
 <!--Search Form Start-->
 <div class="form-wrapper">
-  <form action="">
+  <form (ngSubmit)="searchAction()">
     <div class="fields-wrapper">
       <div class="form-field">
         <input
@@ -8,15 +8,11 @@
           type="text"
           name="search"
           id="search"
-          #input
+          [formControl]="searchText"
         />
       </div>
       <div class="form-field">
-        <button
-          type="button"
-          class="search-btn"
-          (click)="searchQuery = input.value"
-        >
+        <button type="button" class="search-btn" (click)="searchAction()">
           <svg
             focusable="false"
             xmlns="http://www.w3.org/2000/svg"
@@ -35,6 +31,4 @@
 <!--End Here-->
 
 <!--Search Result Component-->
-<ng-container *ngIf="searchQuery">
-  <app-web-search-result [searchQuery]="searchQuery"></app-web-search-result>
-</ng-container>
+<app-web-search-result></app-web-search-result>

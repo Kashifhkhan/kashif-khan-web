@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 import { SearchInterface } from './search-interface';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { SearchInterface } from './search-interface';
 })
 export class AppServicesService {
   constructor(private http: HttpClient) {}
-
+  queryString = new BehaviorSubject<string>('');
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
@@ -22,6 +23,22 @@ export class AppServicesService {
     if (pageNo) {
       url = url + `&page=${pageNo}`;
     }
-    return this.http.get<SearchInterface>(url, this.httpOptions);
+    return this.http
+      .get<SearchInterface>(url, this.httpOptions)
+      .pipe(retry(1), catchError(this.handleError));
+  }
+
+  handleError(error: any) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // server-side error
+      errorMessage = `Error Code: ${error.status} \nMessage: ${error.message}`;
+    }
+    return throwError(() => {
+      return errorMessage;
+    });
   }
 }

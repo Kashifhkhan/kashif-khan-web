@@ -2,8 +2,8 @@
   background-color: #e7e7e7;
   display: flex;
   justify-content: center;
-  margin-bottom: 3em;
-  padding: 30px 10px;
+  margin-bottom: 2rem;
+  padding: 1.5rem 1rem;
 }
 .form-wrapper .fields-wrapper {
   background-color: #fff;

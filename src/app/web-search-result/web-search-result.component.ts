@@ -8,33 +8,49 @@ import { SearchInterface } from '../search-interface';
   styleUrls: ['./web-search-result.component.css'],
 })
 export class WebSearchResultComponent implements OnInit {
-  @Input() searchQuery: string = '';
+  searchQuery: string = '';
   searchResultItems: any[];
   itemsPerPage: number = 9;
   pageNumber: number = 1;
   totalItems: number;
+  errorMessage: any = '';
+  dataFetched: boolean = false;
 
   constructor(private service: AppServicesService) {}
 
   ngOnInit() {
-    this.showResults();
+    this.service.queryString.subscribe((e) => {
+      if (e) {
+        this.searchQuery = e;
+        console.log(e);
+        this.showResults();
+      }
+    });
   }
 
   showResults(page?: any) {
     if (page) {
       this.service
         .getResults(this.searchQuery, this.itemsPerPage, page)
-        .subscribe((result: SearchInterface) => {
-          this.searchResultItems = result.items;
-        });
+        .subscribe(
+          (result: SearchInterface) => {
+            this.searchResultItems = result.items;
+          },
+          (err: any) => {
+            this.errorMessage = err;
+          }
+        );
     } else {
-      this.service
-        .getResults(this.searchQuery, this.itemsPerPage)
-        .subscribe((result: SearchInterface) => {
+      this.service.getResults(this.searchQuery, this.itemsPerPage).subscribe(
+        (result: SearchInterface) => {
           this.searchResultItems = result.items;
           this.totalItems = result.total_count;
-          console.log('total items', this.totalItems);
-        });
+        },
+        (err: any) => {
+          this.errorMessage = err;
+        }
+      );
     }
+    this.dataFetched = true;
   }
 }

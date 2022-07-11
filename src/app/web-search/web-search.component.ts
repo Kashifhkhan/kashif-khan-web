@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { AppServicesService } from '../app-services.service';
 
 @Component({
@@ -8,8 +9,13 @@ import { AppServicesService } from '../app-services.service';
 })
 export class WebSearchComponent implements OnInit {
   constructor(private service: AppServicesService) {}
+  searchText = new FormControl('');
 
-  searchQuery: string = '';
+  searchAction() {
+    if (this.searchText.value) {
+      this.service.queryString.next(this.searchText.value);
+    }
+  }
 
   ngOnInit() {}
 }

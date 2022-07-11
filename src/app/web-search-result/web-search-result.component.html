@@ -1,27 +1,39 @@
-<table class="table table-responsive">
-  <tr
-    *ngFor="
-      let item of searchResultItems
-        | paginate
-          : {
-              itemsPerPage: itemsPerPage,
-              currentPage: pageNumber,
-              totalItems: totalItems
-            }
-    "
-  >
-    <td>
-      <img src="{{ item.avatar_url }}" width="30" height="30" alt="avatar" />
-    </td>
-    <td>
-      <label for="name">{{ item.login }}</label>
-    </td>
-    <td>
-      <label for="usertype">{{ item.type }}</label>
-    </td>
-  </tr>
-</table>
-<pagination-controls
-  *ngIf="searchResultItems && searchResultItems.length"
-  (pageChange)="showResults((pageNumber = $event))"
-></pagination-controls>
+<ng-container
+  *ngIf="searchResultItems && searchResultItems.length; else dataNotFound"
+>
+  <table class="table table-responsive">
+    <tr
+      *ngFor="
+        let item of searchResultItems
+          | paginate
+            : {
+                itemsPerPage: itemsPerPage,
+                currentPage: pageNumber,
+                totalItems: totalItems
+              }
+          | order_by: 'login'
+      "
+    >
+      <td>
+        <img src="{{ item.avatar_url }}" width="30" height="30" alt="avatar" />
+      </td>
+      <td>
+        <label for="name">{{ item.login }}</label>
+      </td>
+      <td>
+        <label for="usertype">{{ item.type }}</label>
+      </td>
+    </tr>
+  </table>
+  <pagination-controls
+    (pageChange)="showResults((pageNumber = $event))"
+  ></pagination-controls>
+</ng-container>
+<ng-template #dataNotFound>
+  <div class="text-center" *ngIf="dataFetched && !errorMessage">
+    <h3>Data not found for searched text</h3>
+  </div>
+</ng-template>
+<div class="text-center">
+  <pre class="error" *ngIf="errorMessage"><code>{{ errorMessage }}</code></pre>
+</div>
