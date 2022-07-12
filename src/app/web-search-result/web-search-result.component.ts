@@ -9,10 +9,10 @@ import { SearchInterface } from '../search-interface';
 })
 export class WebSearchResultComponent implements OnInit {
   searchQuery: string = '';
-  searchResultItems: any[];
+  searchResultItems: any[] = [];
   itemsPerPage: number = 9;
   pageNumber: number = 1;
-  totalItems: number;
+  totalItems: number = 0;
   errorMessage: any = '';
   dataFetched: boolean = false;
 

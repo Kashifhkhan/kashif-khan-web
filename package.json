@@ -19,6 +19,8 @@
     "@angular/platform-browser": "14.0.5",
     "@angular/platform-browser-dynamic": "14.0.5",
     "@angular/router": "14.0.5",
+    "@types/lodash": "^4.14.182",
+    "lodash": "^4.17.21",
     "ngx-pagination": "^6.0.2",
     "rxjs": "7.5.5",
     "tslib": "2.4.0",

@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styles: [`h1 { font-size: 3em; margin-bottom: 1rem; text-align:center }`],
 })
 export class HelloComponent {
-  @Input() name: string;
+  @Input() name: string = '';
 }

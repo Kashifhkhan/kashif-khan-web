@@ -1,18 +1,19 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { orderBy } from 'lodash';
 
 @Pipe({
-  name: 'order_by',
+  name: 'orderBy',
 })
 export class SortPipe implements PipeTransform {
-  transform(value: any, propName: string) {
-    return value.sort((a, b) => {
-      if (a[propName] < b[propName]) {
-        return -1;
-      } else if (a[propName] === b[propName]) {
-        return 0;
-      } else if (a[propName] > b[propName]) {
-        return 1;
-      }
-    });
+  transform(array: any[], sortBy: string, order?: string): any[] {
+    const sortOrder = order ? order : 'asc'; // setting default ascending order
+
+    return orderBy(array, [sortBy], [sortOrder]);
   }
+
+  // orderBy(arr: any[], sortBy: [string], order?: [string]): any[] {
+  //   arr.sort((a, b) => {
+  //     return b - a;
+  //   });
+  // }
 }
