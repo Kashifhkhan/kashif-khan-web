@@ -36,9 +36,11 @@ export class WebSearchResultComponent implements OnInit {
           (result: SearchInterface) => {
             this.searchResultItems = result.items;
             this.dataFetched = true;
+            this.errorMessage = '';
           },
           (err: any) => {
             this.errorMessage = err;
+            this.searchResultItems = [];
           }
         );
     } else {
@@ -47,9 +49,11 @@ export class WebSearchResultComponent implements OnInit {
           this.searchResultItems = result.items;
           this.totalItems = result.total_count;
           this.dataFetched = true;
+          this.errorMessage = '';
         },
         (err: any) => {
           this.errorMessage = err;
+          this.searchResultItems = [];
         }
       );
     }
