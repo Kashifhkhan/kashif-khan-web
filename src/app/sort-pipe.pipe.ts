@@ -5,15 +5,9 @@ import { orderBy } from 'lodash';
   name: 'orderBy',
 })
 export class SortPipe implements PipeTransform {
-  transform(array: any[], sortBy: string, order?: string): any[] {
+  transform(array: any, sortBy: string, order): any[] {
     const sortOrder = order ? order : 'asc'; // setting default ascending order
 
     return orderBy(array, [sortBy], [sortOrder]);
   }
-
-  // orderBy(arr: any[], sortBy: [string], order?: [string]): any[] {
-  //   arr.sort((a, b) => {
-  //     return b - a;
-  //   });
-  // }
 }
